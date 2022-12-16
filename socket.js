@@ -1,9 +1,10 @@
 var express = require('express');
+const cors = require("cors")
 var app = express();
 var server = require('http').createServer(app);
 const io = require("socket.io")(server, {
     cors: {
-        origin: "http://localhost:3000"
+        origin: "*"
     }
 })
 
@@ -52,4 +53,6 @@ io.on("connection", (socket) => {
 
 
 
-server.listen(3012 || process.env.PORT)
+server.listen(3012 || process.env.PORT, () => {
+    console.log("service is up");
+})
